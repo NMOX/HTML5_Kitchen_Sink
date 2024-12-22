@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!-- Defines the document type and version of HTML (5) being used -->
+<html lang="en">
+<!-- The root element of the HTML document, with a language attribute -->
+<head>
+    <!-- Metadata and resources for the document -->
+    <meta charset="UTF-8">
+    <!-- Character encoding declaration for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures responsive design for different devices -->
+    <meta name="description" content="Comprehensive example of all HTML5 tags and attributes">
+    <!-- Provides a description of the document for search engines -->
+    <meta name="author" content="David Christian Liedle">
+    <!-- Indicates the author of the document -->
+    <meta name="keywords" content="HTML5, kitchen sink, tags, attributes">
+    <!-- Keywords for search engine optimization -->
+    <title>HTML5 Kitchen Sink Example</title>
+    <!-- The title displayed in the browser tab -->
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <!-- Links an external stylesheet -->
+    <script src="script.js" defer></script>
+    <!-- Adds JavaScript functionality, deferring script execution -->
+    <base href="https://example.com/">
+    <!-- Sets the base URL for relative links in the document -->
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            color: limegreen;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header, footer {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid green;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #444;
+        }
+
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+    </style>
+    <script>
+        // Basic form validation script
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (event) {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+
+                if (!name || !email) {
+                    alert('Please fill out all required fields.');
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Main content of the document starts here -->
+    <header>
+        <!-- Header section with navigation links -->
+        <nav>
+            <!-- Navigation block for site links -->
+            <ul>
+                <!-- List of navigation links -->
+                <li><a href="home.html" target="_self">Home</a></li>
+                <!-- Link to the home page -->
+                <li><a href="about.html" target="_blank">About</a></li>
+                <!-- Link to the about page, opens in a new tab -->
+                <li><a href="contact.html" target="_self">Contact</a></li>
+                <!-- Link to the contact page -->
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Main section for primary content -->
+        <article id="article-1" class="post" contenteditable="false" draggable="true">
+            <!-- An independent, self-contained article -->
+            <h1>Article Title</h1>
+            <!-- Primary heading for the article -->
+            <section>
+                <!-- A thematic grouping of content -->
+                <h2>Section Heading</h2>
+                <!-- Heading for this section -->
+                <p>Paragraph with <strong>bold text</strong>, <em>italic text</em>, <mark>highlighted text</mark>, and <a href="https://example.com" rel="nofollow" hreflang="en">a hyperlink</a>.</p>
+                <!-- A paragraph demonstrating various inline tags -->
+                <p>Here is a <abbr title="HyperText Markup Language">HTML</abbr> abbreviation and <cite>Citation Example</cite>.</p>
+                <!-- Example of abbreviation and citation tags -->
+                <figure>
+                    <!-- Container for a figure with a caption -->
+                    <img src="image.jpg" alt="Example Image" width="600" height="400" loading="lazy">
+                    <!-- Image with alt text, dimensions, and lazy loading -->
+                    <figcaption>Figure caption for the image.</figcaption>
+                    <!-- Caption describing the figure -->
+                </figure>
+            </section>
+            <aside>
+                <!-- Secondary content such as related links or advertisements -->
+                <h3>Sidebar</h3>
+                <p>Content for the sidebar, such as related links or additional information.</p>
+            </aside>
+        </article>
+
+        <form action="/submit" method="post" enctype="multipart/form-data">
+            <!-- Form for collecting user input -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required maxlength="100">
+            <!-- Text input field for name -->
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <!-- Email input field -->
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" minlength="8" required>
+            <!-- Password input field -->
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob">
+            <!-- Date input field -->
+
+            <label for="color">Favorite Color:</label>
+            <input type="color" id="color" name="color" value="#ff0000">
+            <!-- Color picker input field -->
+
+            <fieldset>
+                <!-- Grouping related form controls -->
+                <legend>Preferences</legend>
+                <!-- Label for the fieldset group -->
+                <label for="newsletter">Subscribe to Newsletter:</label>
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <!-- Checkbox input field -->
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <!-- Dropdown selection -->
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+            <!-- Submit button for the form -->
+        </form>
+
+        <table>
+            <!-- Table structure for tabular data -->
+            <caption>Sample Table</caption>
+            <!-- Caption describing the table -->
+            <thead>
+                <!-- Header section of the table -->
+                <tr>
+                    <th scope="col">Header 1</th>
+                    <th scope="col">Header 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Body section of the table -->
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <!-- Footer section of the table -->
+                <tr>
+                    <td colspan="2">Footer</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <audio controls>
+            <!-- Embeds an audio player -->
+            <source src="audio.mp3" type="audio/mpeg">
+            <!-- Source file for the audio player -->
+            Your browser does not support the audio tag.
+        </audio>
+
+        <video controls width="640" height="360" poster="poster.jpg">
+            <!-- Embeds a video player -->
+            <source src="video.mp4" type="video/mp4">
+            <!-- Source file for the video player -->
+            Your browser does not support the video tag.
+        </video>
+
+        <canvas id="drawingCanvas" width="500" height="500">
+            <!-- Fallback content for browsers that do not support the canvas element -->
+            Your browser does not support the canvas element. Please update your browser to view this content.
+        </canvas>
+        <!-- Canvas for rendering graphics -->
+
+        <progress value="70" max="100">70%</progress>
+        <!-- Progress bar indicating task completion -->
+
+        <meter value="2" min="0" max="10" low="3" high="7" optimum="5">2</meter>
+        <!-- Gauge showing a numeric measurement -->
+
+        <details open>
+            <!-- Expandable content section -->
+            <summary>Expandable Section</summary>
+            <p>Details about this section.</p>
+        </details>
+
+        <dialog open id="dialog">Dialog Example</dialog>
+        <!-- Dialog box for additional interaction -->
+
+        <blockquote cite="https://example.com/quote">This is a blockquote example.</blockquote>
+        <!-- Quoted content from another source -->
+
+        <pre>
+            Code block example
+        </pre>
+        <!-- Preformatted text block -->
+
+        <code>
+            &lt;div&gt;Sample Code&lt;/div&gt;
+        </code>
+        <!-- Inline code example -->
+
+        <output name="result">Result here</output>
+        <!-- Displays the result of a calculation or operation -->
+    </main>
+
+    <footer>
+        <!-- Footer section for copyright and links -->
+        <p>Copyright &copy; 2024 David Christian Liedle. All rights reserved. Generated by ChatGPT-4o.</p>
+    </footer>
+</body>
+</html>
