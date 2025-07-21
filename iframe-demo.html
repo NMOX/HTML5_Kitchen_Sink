@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<!-- HTML5 document type declaration -->
+<html lang="en">
+<!-- Root element with language specification -->
+<head>
+    <!-- Document metadata section -->
+    <meta charset="UTF-8">
+    <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsive viewport meta tag -->
+    <meta name="description" content="Demonstration page designed to be embedded in iframes">
+    <!-- Page description for SEO -->
+    <title>iFrame Demonstration Page</title>
+    <!-- Document title shown in browser tab -->
+    
+    <style>
+        /* Styles for the iframe demonstration page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            <!-- Gradient background for visual appeal -->
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .demo-container {
+            background: rgba(255, 255, 255, 0.1);
+            <!-- Semi-transparent container -->
+            backdrop-filter: blur(10px);
+            <!-- CSS backdrop filter for modern browsers -->
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+        }
+        
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #00ff88;
+        }
+        
+        .interactive-button {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 10px;
+        }
+        
+        .interactive-button:hover {
+            transform: scale(1.05);
+            <!-- CSS transform on hover -->
+        }
+        
+        .counter {
+            font-size: 2em;
+            color: #00ff88;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .current-time {
+            font-size: 1.2em;
+            color: #ffff88;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .iframe-info {
+            background: rgba(255, 200, 0, 0.1);
+            border: 2px dashed rgba(255, 200, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        input[type="text"] {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-demo {
+            margin: 20px 0;
+        }
+        
+        .color-picker-demo {
+            margin: 20px 0;
+        }
+        
+        input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .media-demo {
+            margin: 20px 0;
+        }
+        
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .canvas-demo {
+            margin: 20px 0;
+        }
+        
+        canvas {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: crosshair;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main content area -->
+    <div class="demo-container">
+        <!-- Primary container for demonstration content -->
+        
+        <h1>🖼️ iFrame Demonstration Page</h1>
+        <!-- Main heading with emoji for visual appeal -->
+        
+        <div class="iframe-info">
+            <!-- Information box about iframe embedding -->
+            <h2>📋 Page Information</h2>
+            <p><strong>Purpose:</strong> This page is designed to demonstrate various HTML5 features when embedded in an iframe.</p>
+            <!-- Description of page purpose -->
+            <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+            <!-- Display current page URL -->
+            <p><strong>Parent Window:</strong> <span id="parent-info"></span></p>
+            <!-- Information about parent window -->
+            <p><strong>Page Load Time:</strong> <span id="load-time"></span></p>
+            <!-- Display when page was loaded -->
+        </div>
+
+        <div class="feature-box">
+            <!-- Interactive counter demonstration -->
+            <h3>🔢 Interactive Counter</h3>
+            <div class="counter" id="counter">0</div>
+            <!-- Counter display -->
+            <button class="interactive-button" onclick="incrementCounter()">Increment (+1)</button>
+            <!-- Button to increase counter -->
+            <button class="interactive-button" onclick="decrementCounter()">Decrement (-1)</button>
+            <!-- Button to decrease counter -->
+            <button class="interactive-button" onclick="resetCounter()">Reset (0)</button>
+            <!-- Button to reset counter -->
+        </div>
+
+        <div class="feature-box">
+            <!-- Real-time clock demonstration -->
+            <h3>🕐 Real-Time Clock</h3>
+            <div class="current-time" id="clock"></div>
+            <!-- Clock display area -->
+            <p>This clock updates every second to demonstrate dynamic content in iframes.</p>
+            <!-- Explanation of clock functionality -->
+        </div>
+
+        <div class="feature-box form-demo">
+            <!-- Form interaction demonstration -->
+            <h3>📝 Form Interaction Demo</h3>
+            <form onsubmit="handleFormSubmit(event)">
+                <!-- Form with submit handler -->
+                <label for="user-input">Enter some text:</label>
+                <input type="text" id="user-input" name="userText" placeholder="Type something here..." required>
+                <!-- Text input field -->
+                <button type="submit" class="interactive-button">Process Text</button>
+                <!-- Submit button -->
+            </form>
+            <div id="form-output"></div>
+            <!-- Area to display form results -->
+        </div>
+
+        <div class="feature-box color-picker-demo">
+            <!-- Color picker demonstration -->
+            <h3>🎨 Color Picker Demo</h3>
+            <label for="color-picker">Choose a background color:</label>
+            <input type="color" id="color-picker" value="#667eea" onchange="changeBackgroundColor(this.value)">
+            <!-- Color input with change handler -->
+            <p>The background color of this container will change based on your selection.</p>
+            <!-- Instructions for color picker -->
+        </div>
+
+        <div class="feature-box media-demo">
+            <!-- Audio media demonstration -->
+            <h3>🎵 Audio Media Demo</h3>
+            <p>Audio element demonstration (note: no actual audio file included in this demo):</p>
+            <audio controls>
+                <!-- Audio element with controls -->
+                <source src="demo-audio.mp3" type="audio/mpeg">
+                <!-- Audio source (placeholder) -->
+                <source src="demo-audio.ogg" type="audio/ogg">
+                <!-- Alternative audio source -->
+                Your browser does not support the audio element.
+                <!-- Fallback message -->
+            </audio>
+        </div>
+
+        <div class="feature-box canvas-demo">
+            <!-- Canvas drawing demonstration -->
+            <h3>🎨 Canvas Drawing Demo</h3>
+            <p>Click and drag on the canvas below to draw:</p>
+            <canvas id="drawing-canvas" width="400" height="200"></canvas>
+            <!-- Canvas element for drawing -->
+            <br>
+            <button class="interactive-button" onclick="clearCanvas()">Clear Canvas</button>
+            <!-- Button to clear canvas -->
+        </div>
+
+        <div class="feature-box">
+            <!-- Local storage demonstration -->
+            <h3>💾 Local Storage Demo</h3>
+            <p>Visit count for this page: <span id="visit-count"></span></p>
+            <!-- Display visit counter -->
+            <button class="interactive-button" onclick="resetVisitCount()">Reset Visit Count</button>
+            <!-- Button to reset visit counter -->
+            <p><small>Note: This uses localStorage to persist data between page visits.</small></p>
+            <!-- Explanation of storage mechanism -->
+        </div>
+
+        <div class="feature-box">
+            <!-- Geolocation API demonstration -->
+            <h3>🌍 Geolocation Demo</h3>
+            <button class="interactive-button" onclick="getLocation()">Get My Location</button>
+            <!-- Button to trigger geolocation -->
+            <div id="location-output"></div>
+            <!-- Area to display location results -->
+            <p><small>Note: This requires user permission and HTTPS in production.</small></p>
+            <!-- Important note about geolocation requirements -->
+        </div>
+
+        <div class="feature-box">
+            <!-- CSS animations demonstration -->
+            <h3>✨ CSS Animation Demo</h3>
+            <div id="animation-box" style="width: 50px; height: 50px; background: #00ff88; border-radius: 50%; margin: 20px auto; transition: all 0.5s ease;"></div>
+            <!-- Animated element -->
+            <button class="interactive-button" onclick="animateBox()">Animate Circle</button>
+            <!-- Button to trigger animation -->
+        </div>
+
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <!-- Footer section -->
+            <p><small>This page demonstrates various HTML5 features working within an iframe context.</small></p>
+            <!-- Footer description -->
+            <p><small>Created as part of the HTML5 Kitchen Sink project.</small></p>
+            <!-- Attribution -->
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript functionality for interactive demonstrations
+        
+        // Counter functionality
+        let counterValue = 0;
+        // Global counter variable
+        
+        function incrementCounter() {
+            // Function to increase counter
+            counterValue++;
+            document.getElementById('counter').textContent = counterValue;
+            // Update counter display
+        }
+        
+        function decrementCounter() {
+            // Function to decrease counter
+            counterValue--;
+            document.getElementById('counter').textContent = counterValue;
+            // Update counter display
+        }
+        
+        function resetCounter() {
+            // Function to reset counter
+            counterValue = 0;
+            document.getElementById('counter').textContent = counterValue;
+            // Update counter display
+        }
+        
+        // Real-time clock functionality
+        function updateClock() {
+            // Function to update clock display
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+            document.getElementById('clock').textContent = `${dateString} ${timeString}`;
+            // Display current date and time
+        }
+        
+        // Update clock every second
+        setInterval(updateClock, 1000);
+        // Set interval for clock updates
+        updateClock(); // Initial call
+        
+        // Form handling
+        function handleFormSubmit(event) {
+            // Function to handle form submission
+            event.preventDefault();
+            // Prevent default form submission
+            const input = document.getElementById('user-input').value;
+            const output = document.getElementById('form-output');
+            output.innerHTML = `<p style="background: rgba(0,255,136,0.1); padding: 10px; border-radius: 5px; margin-top: 15px;">
+                <strong>You entered:</strong> "${input}"<br>
+                <strong>Character count:</strong> ${input.length}<br>
+                <strong>Word count:</strong> ${input.trim().split(/\s+/).length}<br>
+                <strong>Reversed:</strong> "${input.split('').reverse().join('')}"
+            </p>`;
+            // Display processed form data
+        }
+        
+        // Color picker functionality
+        function changeBackgroundColor(color) {
+            // Function to change background color
+            const container = document.querySelector('.demo-container');
+            container.style.background = `linear-gradient(135deg, ${color} 0%, ${adjustBrightness(color, -30)} 100%)`;
+            // Apply gradient background with selected color
+        }
+        
+        function adjustBrightness(hex, percent) {
+            // Utility function to adjust color brightness
+            const num = parseInt(hex.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+            // Return adjusted color value
+        }
+        
+        // Canvas drawing functionality
+        let isDrawing = false;
+        let canvas, ctx;
+        // Canvas drawing variables
+        
+        function initializeCanvas() {
+            // Function to set up canvas drawing
+            canvas = document.getElementById('drawing-canvas');
+            ctx = canvas.getContext('2d');
+            
+            // Set drawing properties
+            ctx.strokeStyle = '#00ff88';
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            // Configure drawing style
+            
+            // Mouse events for drawing
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            // Add mouse event listeners
+            
+            // Touch events for mobile drawing
+            canvas.addEventListener('touchstart', handleTouch);
+            canvas.addEventListener('touchmove', handleTouch);
+            canvas.addEventListener('touchend', stopDrawing);
+            // Add touch event listeners for mobile devices
+        }
+        
+        function startDrawing(e) {
+            // Function to start drawing
+            isDrawing = true;
+            draw(e);
+            // Begin drawing at current position
+        }
+        
+        function draw(e) {
+            // Function to draw on canvas
+            if (!isDrawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            // Calculate drawing coordinates
+            
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            // Draw line to current position
+        }
+        
+        function stopDrawing() {
+            // Function to stop drawing
+            if (isDrawing) {
+                isDrawing = false;
+                ctx.beginPath();
+                // End current drawing path
+            }
+        }
+        
+        function handleTouch(e) {
+            // Function to handle touch events
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 
+                                           e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+            // Convert touch events to mouse events
+        }
+        
+        function clearCanvas() {
+            // Function to clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Clear entire canvas
+        }
+        
+        // Local storage functionality
+        function updateVisitCount() {
+            // Function to update visit counter
+            let visits = localStorage.getItem('iframe-demo-visits') || 0;
+            visits = parseInt(visits) + 1;
+            localStorage.setItem('iframe-demo-visits', visits);
+            document.getElementById('visit-count').textContent = visits;
+            // Update and display visit count
+        }
+        
+        function resetVisitCount() {
+            // Function to reset visit counter
+            localStorage.setItem('iframe-demo-visits', 0);
+            document.getElementById('visit-count').textContent = 0;
+            // Reset visit count to zero
+        }
+        
+        // Geolocation functionality
+        function getLocation() {
+            // Function to get user location
+            const output = document.getElementById('location-output');
+            
+            if (navigator.geolocation) {
+                // Check if geolocation is supported
+                output.innerHTML = '<p style="color: #ffff88;">Getting location...</p>';
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // Success callback
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        output.innerHTML = `<p style="background: rgba(0,255,136,0.1); padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong>Latitude:</strong> ${lat.toFixed(6)}<br>
+                            <strong>Longitude:</strong> ${lon.toFixed(6)}<br>
+                            <strong>Accuracy:</strong> ${accuracy} meters
+                        </p>`;
+                        // Display location information
+                    },
+                    function(error) {
+                        // Error callback
+                        let errorMessage = 'Unknown error';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = 'Location access denied by user';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = 'Location information unavailable';
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = 'Location request timed out';
+                                break;
+                        }
+                        output.innerHTML = `<p style="color: #ff6666; margin-top: 10px;">Error: ${errorMessage}</p>`;
+                        // Display error message
+                    }
+                );
+            } else {
+                output.innerHTML = '<p style="color: #ff6666;">Geolocation is not supported by this browser.</p>';
+                // Display unsupported message
+            }
+        }
+        
+        // Animation functionality
+        function animateBox() {
+            // Function to animate the circle
+            const box = document.getElementById('animation-box');
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            const randomSize = Math.floor(Math.random() * 50) + 30;
+            const randomRotate = Math.floor(Math.random() * 360);
+            
+            box.style.background = randomColor;
+            box.style.width = randomSize + 'px';
+            box.style.height = randomSize + 'px';
+            box.style.transform = `rotate(${randomRotate}deg) scale(1.2)`;
+            // Apply random transformations
+            
+            setTimeout(() => {
+                box.style.transform = 'rotate(0deg) scale(1)';
+                // Reset transformation after delay
+            }, 500);
+        }
+        
+        // Page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to run when page loads
+            
+            // Display page information
+            document.getElementById('current-url').textContent = window.location.href;
+            document.getElementById('parent-info').textContent = 
+                window.parent !== window ? 'Embedded in iframe' : 'Standalone page';
+            document.getElementById('load-time').textContent = new Date().toLocaleString();
+            // Display page metadata
+            
+            // Initialize interactive features
+            initializeCanvas();
+            updateVisitCount();
+            // Set up interactive elements
+            
+            // Console message for developers
+            console.log('iFrame Demo Page Loaded Successfully!');
+            console.log('This page demonstrates various HTML5 features within an iframe context.');
+            // Developer console messages
+        });
+        
+        // Window message handling for iframe communication
+        window.addEventListener('message', function(event) {
+            // Function to handle messages from parent window
+            console.log('Received message from parent:', event.data);
+            // Log received messages
+            
+            // Handle specific message types
+            if (event.data.type === 'changeTheme') {
+                changeBackgroundColor(event.data.color);
+                // Change theme based on parent message
+            }
+            // Add more message handlers as needed
+        });
+        
+        // Send message to parent window (if in iframe)
+        if (window.parent !== window) {
+            window.parent.postMessage({
+                type: 'iframeReady',
+                message: 'iFrame demo page has loaded successfully'
+            }, '*');
+            // Notify parent that iframe is ready
+        }
+    </script>
+</body>
+</html>
